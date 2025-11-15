@@ -9,6 +9,9 @@
 #include "glm/ext/matrix_transform.hpp"
 #include "glm/ext/matrix_clip_space.hpp"
 
+#include "game/player.hpp"
+#include <iostream>
+
 namespace playground::core
 {
     app* app::instance = nullptr;
@@ -44,12 +47,15 @@ namespace playground::core
 
         gfx::command::init();
         gfx::render2d::init();
+
+        // Game logic
     }
 
     void app::run()
     {
         static float rotation;
         vex_sprite_tex = std::make_unique<gfx::tex2d>("img/vex.png");
+        Player player;
 
         while (is_running)
         {
@@ -79,6 +85,9 @@ namespace playground::core
 
             // Poll
             window->update();
+
+            // Input
+            // player.TakeDamage(1);
         }
 
         vex_sprite_tex.reset();
