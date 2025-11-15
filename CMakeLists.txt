@@ -24,6 +24,8 @@ set(SOURCES
     "src/gfx/render2d.cpp"
     "src/gfx/tex2d.cpp"
     "src/gfx/image.cpp"
+
+    "src/game/player.cpp"
 )
 
 add_executable(playground ${SOURCES})
