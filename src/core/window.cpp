@@ -40,6 +40,11 @@ namespace playground::core
         // Handle callbacks
         glfwSetWindowSizeCallback(handle, on_resize);
         glfwSetWindowCloseCallback(handle, on_close);
+
+        // Input callbacks
+        glfwSetKeyCallback(handle, on_key_press);
+        glfwSetMouseButtonCallback(handle, on_mouse_button);
+        glfwSetCursorPosCallback(handle, on_cursor_position);
     }
 
     window::~window()
@@ -51,6 +56,23 @@ namespace playground::core
     {
         glfwPollEvents();
     }
+
+    bool window::is_key_pressed(int key) const
+    {
+        return glfwGetKey(handle, key) == GLFW_PRESS;
+    }
+
+    bool window::is_mouse_button_pressed(int button) const
+    {
+        return glfwGetMouseButton(handle, button) == GLFW_PRESS;
+    }
+
+    // vector2double window::get_mouse_position() const
+    // {
+    //     vector2double position;
+    //     glfwGetCursorPos(handle, position.x, position.y);
+    //     return position;
+    // }
 
     playground::core::window* get_wrapper(GLFWwindow*& window)
     {
@@ -69,5 +91,28 @@ namespace playground::core
     void window::on_close(GLFWwindow* window)
     {
         app::get().close();
+    }
+
+    void window::on_key_press(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        {
+            on_close(window);
+        }
+
+        if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+        {
+            std::cout << "SPACE PRESSED" << std::endl;
+        }
+    }
+
+    void window::on_mouse_button(GLFWwindow* window, int button, int action, int mods)
+    {
+
+    }
+
+    void window::on_cursor_position(GLFWwindow* window, double xpos, double ypos)
+    {
+
     }
 }
