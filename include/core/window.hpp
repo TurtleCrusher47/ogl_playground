@@ -2,6 +2,7 @@
 
 #include <string>
 #include "core/vector2.hpp"
+#include "core/input_manager.hpp"
 
 struct GLFWwindow;
 

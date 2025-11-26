@@ -95,24 +95,26 @@ namespace playground::core
 
     void window::on_key_press(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
+        input_manager::on_key(key, scancode, action, mods);
+
         if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         {
             on_close(window);
         }
 
-        if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-        {
-            std::cout << "SPACE PRESSED" << std::endl;
-        }
+        // if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+        // {
+        //     std::cout << "SPACE PRESSED" << std::endl;
+        // }
     }
 
     void window::on_mouse_button(GLFWwindow* window, int button, int action, int mods)
     {
-
+        input_manager::on_mouse_button(button, action, mods);
     }
 
     void window::on_cursor_position(GLFWwindow* window, double xpos, double ypos)
     {
-
+        input_manager::on_cursor_position(xpos, ypos);
     }
 }
