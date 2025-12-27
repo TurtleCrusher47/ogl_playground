@@ -9,7 +9,9 @@ namespace playground
         _health = 50;
         _movementSpeed = 10;
         _position = glm::vec2(0, 0);
-        player_sprite_texture = std::make_unique<gfx::tex2d>("img/vex.png");
+        _rotation = 0.f;
+        _size = glm::vec2(240.0f);
+        _player_sprite_texture = std::make_unique<gfx::tex2d>("img/vex.png");
     }
     
     player::~player()
@@ -46,6 +48,48 @@ namespace playground
     {
         _position = newPosition;
         std::cout << "Player position: " << _position.x << ", " << _position.y << std::endl;
+    }
+
+    float player::get_rotation() const
+    {
+        return _rotation;
+    }
+
+    void player::set_rotation(float newRotation)
+    {
+        _rotation = newRotation;
+        std::cout << "Player rotation: " << _rotation << std::endl;
+    }
+
+
+    glm::vec2 player::get_size() const
+    {
+        return _size;
+    }
+
+    void player::set_size(glm::vec2 newSize)
+    {
+        _size = newSize;
+        std::cout << "Player size: " << _size.x << ", " << _size.y << std::endl;
+    }
+
+    gfx::tex2d* player::get_spriteptr() const
+    {
+        if (_player_sprite_texture.get())
+        {
+            std::cout << "Render player" << std::endl;
+            return _player_sprite_texture.get();
+        }
+        else
+        {
+            std::cout << "No texture" << std::endl;
+            return 0;
+        }
+    }
+
+    void player::set_sprite(std::unique_ptr<gfx::tex2d> newSpritePtr)
+    {
+        _player_sprite_texture = std::move(newSpritePtr);
     }
     
     void player::take_damage(int damageTaken)

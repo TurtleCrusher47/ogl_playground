@@ -20,6 +20,12 @@ namespace playground
         void set_movement_speed(int newMovementSpeed);
         glm::vec2 get_position() const;
         void set_position(glm::vec2 newPosition);
+        float get_rotation() const;
+        void set_rotation(float newRotation);
+        glm::vec2 get_size() const;
+        void set_size(glm::vec2 newSize);
+        gfx::tex2d* get_spriteptr() const;
+        void set_sprite(std::unique_ptr<gfx::tex2d> newSprite);
         void take_damage(int damageTaken);
         void die();
     
@@ -28,6 +34,8 @@ namespace playground
         int _health;
         int _movementSpeed;
         glm::vec2 _position;
-        std::unique_ptr<gfx::tex2d> player_sprite_texture;
+        float _rotation;
+        glm::vec2 _size;
+        std::unique_ptr<gfx::tex2d> _player_sprite_texture;
     };
 }

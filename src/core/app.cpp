@@ -72,13 +72,19 @@ namespace playground::core
             //     nullptr,
             //     glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 
-            gfx::render2d::draw_quad({ 60.0f, 0.0f },
-                -rotation * 2.0f,
-                glm::vec2(240.0f),
-                vex_sprite_tex.get());
+            // gfx::render2d::draw_quad({ 60.0f, 0.0f },
+            //     -rotation * 2.0f,
+            //     glm::vec2(240.0f),
+            //     vex_sprite_tex.get());
 
-            constexpr float rotation_speed = 30.0f;
-            rotation += time::get_delta_time() * rotation_speed;
+            // Render player
+            gfx::render2d::draw_quad({player_character.get_position()},
+                player_character.get_rotation(),
+                player_character.get_size(),
+                player_character.get_spriteptr());
+
+            // constexpr float rotation_speed = 30.0f;
+            // rotation += time::get_delta_time() * rotation_speed;
 
             // Swap framebuffers
             gfx_ctx->swap_buffers();
