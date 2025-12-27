@@ -5,6 +5,7 @@
 #include "gfx/ogl_ctx.hpp"
 #include "gfx/tex2d.hpp"
 
+#include "glm/glm.hpp"
 #include <memory>
 
 namespace playground::core

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "core/vector2.hpp"
+#include "glm/glm.hpp"
 #include "core/input_manager.hpp"
 
 struct GLFWwindow;

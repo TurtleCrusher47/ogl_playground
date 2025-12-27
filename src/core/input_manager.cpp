@@ -4,7 +4,7 @@ namespace playground::core
 {
     std::array<bool, GLFW_KEY_LAST + 1> input_manager::keys{};
     std::array<bool, GLFW_MOUSE_BUTTON_LAST + 1> input_manager::mouse_buttons{};
-    vector2double input_manager::mouse_position{};
+    glm::dvec2 input_manager::mouse_position{};
 
     // Queries
     bool input_manager::is_key_down(int key)
@@ -21,7 +21,7 @@ namespace playground::core
         return mouse_buttons[button];
     }
 
-    vector2double input_manager::get_mouse_position()
+    glm::dvec2 input_manager::get_mouse_position()
     {
         return mouse_position;
     }
