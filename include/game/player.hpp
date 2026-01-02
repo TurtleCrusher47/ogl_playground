@@ -4,6 +4,7 @@
 #include "gfx/ogl_ctx.hpp"
 #include "gfx/tex2d.hpp"
 #include "glm/glm.hpp"
+#include "game/collider.hpp"
 
 #include <memory>
 

@@ -6,4 +6,4 @@ struct collider
     float y;
     float width;
     float height;
-}
+};
