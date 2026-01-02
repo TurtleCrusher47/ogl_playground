@@ -27,12 +27,14 @@ namespace playground
         gfx::tex2d* get_spriteptr() const;
         void set_sprite(std::unique_ptr<gfx::tex2d> newSprite);
         void take_damage(int damageTaken);
+        void move_player();
         void die();
     
     
     private:
         int _health;
-        int _movementSpeed;
+        float _movementSpeed;
+        float _movementSpeedMultiplier;
         glm::vec2 _position;
         float _rotation;
         glm::vec2 _size;

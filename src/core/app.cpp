@@ -77,6 +77,8 @@ namespace playground::core
             //     glm::vec2(240.0f),
             //     vex_sprite_tex.get());
 
+
+            player_character.move_player();
             // Render player
             gfx::render2d::draw_quad({player_character.get_position()},
                 player_character.get_rotation(),

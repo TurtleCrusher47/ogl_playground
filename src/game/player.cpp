@@ -1,5 +1,6 @@
 #include "game/player.hpp"
 #include "gfx/tex2d.hpp"
+#include "core/input_manager.hpp"
 #include <iostream>
 
 namespace playground
@@ -7,7 +8,8 @@ namespace playground
     player::player()
     {
         _health = 50;
-        _movementSpeed = 10;
+        _movementSpeed = 0.05f;
+        _movementSpeedMultiplier = 1;
         _position = glm::vec2(0, 0);
         _rotation = 0.f;
         _size = glm::vec2(240.0f);
@@ -31,12 +33,12 @@ namespace playground
     
     int player::get_movement_speed() const
     {
-        return _movementSpeed;
+        return _movementSpeedMultiplier;
     }
     
-    void player::set_movement_speed(int newMovementSpeed)
+    void player::set_movement_speed(int newMovementSpeedMultiplier)
     {
-        _movementSpeed = newMovementSpeed;
+        _movementSpeedMultiplier = newMovementSpeedMultiplier;
     }
     
     glm::vec2 player::get_position() const
@@ -61,7 +63,6 @@ namespace playground
         std::cout << "Player rotation: " << _rotation << std::endl;
     }
 
-
     glm::vec2 player::get_size() const
     {
         return _size;
@@ -77,7 +78,7 @@ namespace playground
     {
         if (_player_sprite_texture.get())
         {
-            std::cout << "Render player" << std::endl;
+            // std::cout << "Render player" << std::endl;
             return _player_sprite_texture.get();
         }
         else
@@ -105,6 +106,34 @@ namespace playground
         else
         {
             // Regular functionality after taking damage
+        }
+    }
+
+    void player::move_player()
+    {
+        // W
+        if (core::input_manager::is_key_down(87))
+        {
+            // std::cout << "W" << std::endl;
+            _position.y += _movementSpeed * _movementSpeedMultiplier;
+        }
+        // A
+        if (core::input_manager::is_key_down(65))
+        {
+            // std::cout << "A" << std::endl;
+            _position.x -= _movementSpeed * _movementSpeedMultiplier;
+        }
+        // S
+        if (core::input_manager::is_key_down(83))
+        {
+            // std::cout << "S" << std::endl;
+            _position.y -= _movementSpeed * _movementSpeedMultiplier;
+        }
+        // D
+        if (core::input_manager::is_key_down(68))
+        {
+            // std::cout << "D" << std::endl;
+            _position.x += _movementSpeed * _movementSpeedMultiplier;
         }
     }
     
