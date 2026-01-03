@@ -1,6 +1,6 @@
 #include "collision.hpp"
 
-bool collision::AABB(const collider& a, const collider& b)
+bool collision::AABB(const aabb_collider& a, const aabb_collider& b)
 {
     return
     a.x < b.x + b.width &&

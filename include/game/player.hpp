@@ -4,13 +4,13 @@
 #include "gfx/ogl_ctx.hpp"
 #include "gfx/tex2d.hpp"
 #include "glm/glm.hpp"
-#include "game/collider.hpp"
+#include "interfaces/i_aabb.hpp"
 
 #include <memory>
 
 namespace playground
 {
-    class player
+    class player : public interfaces::i_aabb
     {
     public:
         player();
@@ -30,6 +30,8 @@ namespace playground
         void take_damage(int damageTaken);
         void move_player();
         void die();
+
+        aabb_collider get_aabb() const override;
     
     
     private:
@@ -39,6 +41,7 @@ namespace playground
         glm::vec2 _position;
         float _rotation;
         glm::vec2 _size;
+        glm::vec2 _collider_size;
         std::unique_ptr<gfx::tex2d> _player_sprite_texture;
     };
 }

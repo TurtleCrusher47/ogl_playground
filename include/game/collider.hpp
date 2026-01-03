@@ -1,9 +1,0 @@
-#pragma once
-
-struct collider
-{
-    float x;
-    float y;
-    float width;
-    float height;
-};

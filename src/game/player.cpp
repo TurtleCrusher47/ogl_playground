@@ -116,6 +116,7 @@ namespace playground
         {
             // std::cout << "W" << std::endl;
             _position.y += _movementSpeed * _movementSpeedMultiplier;
+            get_aabb();
         }
         // A
         if (core::input_manager::is_key_down(65))
@@ -141,5 +142,11 @@ namespace playground
     {
         // Reset game etc
         std::cout << "Dead" << std::endl;
+    }
+
+    aabb_collider player::get_aabb() const
+    {
+        std::cout << "works" << std::endl;
+        return aabb_collider { _position, _collider_size };
     }
 }
