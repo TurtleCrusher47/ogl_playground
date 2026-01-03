@@ -119,25 +119,40 @@ namespace playground
         {
             // std::cout << "W" << std::endl;
             _position.y += _movementSpeed * _movementSpeedMultiplier;
-            if (collision::AABB())
+            if (collision::AABB(get_aabb(), invisible_wall))
+            {
+                _position = old_postion;
+            }
         }
         // A
         if (core::input_manager::is_key_down(65))
         {
             // std::cout << "A" << std::endl;
             _position.x -= _movementSpeed * _movementSpeedMultiplier;
+            if (collision::AABB(get_aabb(), invisible_wall))
+            {
+                _position = old_postion;
+            }
         }
         // S
         if (core::input_manager::is_key_down(83))
         {
             // std::cout << "S" << std::endl;
             _position.y -= _movementSpeed * _movementSpeedMultiplier;
+            if (collision::AABB(get_aabb(), invisible_wall))
+            {
+                _position = old_postion;
+            }
         }
         // D
         if (core::input_manager::is_key_down(68))
         {
             // std::cout << "D" << std::endl;
             _position.x += _movementSpeed * _movementSpeedMultiplier;
+            if (collision::AABB(get_aabb(), invisible_wall))
+            {
+                _position = old_postion;
+            }
         }
     }
     
@@ -149,7 +164,7 @@ namespace playground
 
     aabb_collider player::get_aabb() const
     {
-        std::cout << "works" << std::endl;
+        // std::cout << "works" << std::endl;
         return aabb_collider { _position, _collider_size };
     }
 }

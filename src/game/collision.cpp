@@ -1,4 +1,4 @@
-#include "collision.hpp"
+#include "game/collision.hpp"
 
 bool collision::AABB(const aabb_collider& a, const aabb_collider& b)
 {

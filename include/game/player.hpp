@@ -44,5 +44,8 @@ namespace playground
         glm::vec2 _size;
         glm::vec2 _collider_size;
         std::unique_ptr<gfx::tex2d> _player_sprite_texture;
+
+        aabb_collider invisible_wall {glm::vec2(500, 0), glm::vec2(240.0f)};
+        
     };
 }
