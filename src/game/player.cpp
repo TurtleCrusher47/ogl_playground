@@ -13,6 +13,7 @@ namespace playground
         _position = glm::vec2(0, 0);
         _rotation = 0.f;
         _size = glm::vec2(240.0f);
+        _collider_size = glm::vec2(240.f);
         _player_sprite_texture = std::make_unique<gfx::tex2d>("img/vex.png");
     }
     
@@ -111,12 +112,14 @@ namespace playground
 
     void player::move_player()
     {
+        glm::vec2 old_postion = _position;
+
         // W
         if (core::input_manager::is_key_down(87))
         {
             // std::cout << "W" << std::endl;
             _position.y += _movementSpeed * _movementSpeedMultiplier;
-            get_aabb();
+            if (collision::AABB())
         }
         // A
         if (core::input_manager::is_key_down(65))

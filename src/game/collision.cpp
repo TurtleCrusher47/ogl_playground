@@ -3,8 +3,8 @@
 bool collision::AABB(const aabb_collider& a, const aabb_collider& b)
 {
     return
-    a.x < b.x + b.width &&
-    a.x + a.width > b.x &&
-    a.y < b.y + b.height &&
-    a.y + a.height > b.y;
+    a.position.x < b.position.x + b.size.x &&
+    a.position.x + a.size.x > b.position.x &&
+    a.position.y < b.position.y + b.size.y &&
+    a.position.y + a.size.y > b.position.y;
 }

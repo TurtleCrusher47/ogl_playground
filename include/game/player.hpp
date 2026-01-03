@@ -5,6 +5,7 @@
 #include "gfx/tex2d.hpp"
 #include "glm/glm.hpp"
 #include "interfaces/i_aabb.hpp"
+#include "game/collision.hpp"
 
 #include <memory>
 
