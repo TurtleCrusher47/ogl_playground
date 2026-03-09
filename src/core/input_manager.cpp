@@ -49,7 +49,7 @@ namespace playground::core
 
     void input_manager::on_cursor_position(double xpos, double ypos)
     {
-        std::cout << "xpos: " << xpos << ", ypos: " << ypos << std::endl;
+        // std::cout << "xpos: " << xpos << ", ypos: " << ypos << std::endl;
         mouse_position = { xpos, ypos };
     }
 }

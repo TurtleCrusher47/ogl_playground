@@ -66,11 +66,11 @@ namespace playground::core
             gfx::command::clear_color({ 0.2f, 0.2f, 0.2f, 1.0f });
 
             // Add draw calls
-            // gfx::render2d::draw_quad({ -60.0f, 0.0f },
-            //     rotation,
-            //     glm::vec2(240.0f),
-            //     nullptr,
-            //     glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+            gfx::render2d::draw_quad({ 500.0f, 0.0f },
+                rotation,
+                glm::vec2(240.0f),
+                nullptr,
+                glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 
             // gfx::render2d::draw_quad({ 60.0f, 0.0f },
             //     -rotation * 2.0f,

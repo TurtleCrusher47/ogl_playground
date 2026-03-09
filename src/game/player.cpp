@@ -20,7 +20,6 @@ namespace playground
     player::player(int h, float ms, float msm, glm::vec2 p, float r, glm::vec2 s, glm::vec2 cs, std::unique_ptr<gfx::tex2d> pst)
         : _health(h), _movement_speed(ms), _movement_speed_multiplier(msm), _position(p), _rotation(r), _size(s), _collider_size(cs), _player_sprite_texture(std::move(pst))
     {
-
     }
     
     player::~player()
@@ -55,7 +54,7 @@ namespace playground
     
     void player::set_position(glm::vec2 new_position)
     {
-        _position = new_position;
+        _position =  new_position;
         std::cout << "Player position: " << _position.x << ", " << _position.y << std::endl;
     }
 
@@ -125,7 +124,7 @@ namespace playground
         {
             // std::cout << "W" << std::endl;
             _position.y += _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), invisible_wall))
+            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
             {
                 _position = old_postion;
             }
@@ -135,7 +134,7 @@ namespace playground
         {
             // std::cout << "A" << std::endl;
             _position.x -= _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), invisible_wall))
+            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
             {
                 _position = old_postion;
             }
@@ -145,7 +144,7 @@ namespace playground
         {
             // std::cout << "S" << std::endl;
             _position.y -= _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), invisible_wall))
+            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
             {
                 _position = old_postion;
             }
@@ -155,7 +154,7 @@ namespace playground
         {
             // std::cout << "D" << std::endl;
             _position.x += _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), invisible_wall))
+            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
             {
                 _position = old_postion;
             }

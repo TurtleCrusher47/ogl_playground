@@ -28,6 +28,7 @@ set(SOURCES
 
     "src/game/player.cpp"
     "src/game/collision.cpp"
+    "src/game/wall.cpp"
 )
 
 add_executable(playground ${SOURCES})
