@@ -15,6 +15,7 @@ namespace playground
     {
     public:
         player();
+        player(int h, float ms, float msm, glm::vec2 p, float r, glm::vec2 s, glm::vec2 cs, std::unique_ptr<gfx::tex2d> pst);
         ~player();
         int get_health() const;
         void set_health(int newHealth);
@@ -36,14 +37,14 @@ namespace playground
     
     
     private:
-        int _health;
-        float _movementSpeed;
-        float _movementSpeedMultiplier;
-        glm::vec2 _position;
-        float _rotation;
-        glm::vec2 _size;
-        glm::vec2 _collider_size;
-        std::unique_ptr<gfx::tex2d> _player_sprite_texture;
+        int _health {50};
+        float _movement_speed {0.05f};
+        float _movement_speed_multiplier {1};
+        glm::vec2 _position {0, 0};
+        float _rotation {0.f};
+        glm::vec2 _size {240.0f};
+        glm::vec2 _collider_size {240.f, 240.f};
+        std::unique_ptr<gfx::tex2d> _player_sprite_texture =  std::make_unique<gfx::tex2d>("img/vex.png");
 
         aabb_collider invisible_wall {glm::vec2(500, 0), glm::vec2(240.0f)};
         

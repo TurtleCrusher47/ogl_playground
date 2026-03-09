@@ -7,14 +7,20 @@ namespace playground
 {
     player::player()
     {
-        _health = 50;
-        _movementSpeed = 0.05f;
-        _movementSpeedMultiplier = 1;
-        _position = glm::vec2(0, 0);
-        _rotation = 0.f;
-        _size = glm::vec2(240.0f);
-        _collider_size = glm::vec2(240.f);
-        _player_sprite_texture = std::make_unique<gfx::tex2d>("img/vex.png");
+        // _health = 50;
+        // _movement_speed = 0.05f;
+        // _movement_speed_multiplier = 1;
+        // _position = glm::vec2(0, 0);
+        // _rotation = 0.f;
+        // _size = glm::vec2(240.0f);
+        // _collider_size = glm::vec2(240.f);
+        // _player_sprite_texture = std::make_unique<gfx::tex2d>("img/vex.png");
+    }
+
+    player::player(int h, float ms, float msm, glm::vec2 p, float r, glm::vec2 s, glm::vec2 cs, std::unique_ptr<gfx::tex2d> pst)
+        : _health(h), _movement_speed(ms), _movement_speed_multiplier(msm), _position(p), _rotation(r), _size(s), _collider_size(cs), _player_sprite_texture(std::move(pst))
+    {
+
     }
     
     player::~player()
@@ -34,12 +40,12 @@ namespace playground
     
     int player::get_movement_speed() const
     {
-        return _movementSpeedMultiplier;
+        return _movement_speed_multiplier;
     }
     
-    void player::set_movement_speed(int newMovementSpeedMultiplier)
+    void player::set_movement_speed(int new_movement_speed_multipler)
     {
-        _movementSpeedMultiplier = newMovementSpeedMultiplier;
+        _movement_speed_multiplier = new_movement_speed_multipler;
     }
     
     glm::vec2 player::get_position() const
@@ -47,9 +53,9 @@ namespace playground
         return _position;
     }
     
-    void player::set_position(glm::vec2 newPosition)
+    void player::set_position(glm::vec2 new_position)
     {
-        _position = newPosition;
+        _position = new_position;
         std::cout << "Player position: " << _position.x << ", " << _position.y << std::endl;
     }
 
@@ -58,9 +64,9 @@ namespace playground
         return _rotation;
     }
 
-    void player::set_rotation(float newRotation)
+    void player::set_rotation(float new_rotation)
     {
-        _rotation = newRotation;
+        _rotation = new_rotation;
         std::cout << "Player rotation: " << _rotation << std::endl;
     }
 
@@ -69,9 +75,9 @@ namespace playground
         return _size;
     }
 
-    void player::set_size(glm::vec2 newSize)
+    void player::set_size(glm::vec2 new_size)
     {
-        _size = newSize;
+        _size = new_size;
         std::cout << "Player size: " << _size.x << ", " << _size.y << std::endl;
     }
 
@@ -94,10 +100,10 @@ namespace playground
         _player_sprite_texture = std::move(newSpritePtr);
     }
     
-    void player::take_damage(int damageTaken)
+    void player::take_damage(int damage_taken)
     {
-        _health -= damageTaken;
-        std::cout << "Damage taken: " << damageTaken << std::endl;
+        _health -= damage_taken;
+        std::cout << "Damage taken: " << damage_taken << std::endl;
         std::cout << "Remaining health: " << _health << std::endl;
     
         if (_health <= 0)
@@ -118,7 +124,7 @@ namespace playground
         if (core::input_manager::is_key_down(87))
         {
             // std::cout << "W" << std::endl;
-            _position.y += _movementSpeed * _movementSpeedMultiplier;
+            _position.y += _movement_speed * _movement_speed_multiplier;
             if (collision::AABB(get_aabb(), invisible_wall))
             {
                 _position = old_postion;
@@ -128,7 +134,7 @@ namespace playground
         if (core::input_manager::is_key_down(65))
         {
             // std::cout << "A" << std::endl;
-            _position.x -= _movementSpeed * _movementSpeedMultiplier;
+            _position.x -= _movement_speed * _movement_speed_multiplier;
             if (collision::AABB(get_aabb(), invisible_wall))
             {
                 _position = old_postion;
@@ -138,7 +144,7 @@ namespace playground
         if (core::input_manager::is_key_down(83))
         {
             // std::cout << "S" << std::endl;
-            _position.y -= _movementSpeed * _movementSpeedMultiplier;
+            _position.y -= _movement_speed * _movement_speed_multiplier;
             if (collision::AABB(get_aabb(), invisible_wall))
             {
                 _position = old_postion;
@@ -148,7 +154,7 @@ namespace playground
         if (core::input_manager::is_key_down(68))
         {
             // std::cout << "D" << std::endl;
-            _position.x += _movementSpeed * _movementSpeedMultiplier;
+            _position.x += _movement_speed * _movement_speed_multiplier;
             if (collision::AABB(get_aabb(), invisible_wall))
             {
                 _position = old_postion;
