@@ -14,6 +14,7 @@ set(SOURCES
     "src/core/time.cpp"
     "src/core/window.cpp"
     "src/core/input_manager.cpp"
+    "src/core/collision_manager.cpp"
 
     "src/gfx/command.cpp"
     "src/gfx/vert_array.cpp"
