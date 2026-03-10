@@ -18,7 +18,7 @@ namespace playground
     }
 
     player::player(int h, float ms, float msm, glm::vec2 p, float r, glm::vec2 s, glm::vec2 cs, std::unique_ptr<gfx::tex2d> pst)
-        : _health(h), _movement_speed(ms), _movement_speed_multiplier(msm), _position(p), _rotation(r), _size(s), _collider_size(cs), _player_sprite_texture(std::move(pst))
+        : _health(h), _movement_speed(ms), _movement_speed_multiplier(msm), _position(p), _rotation(r), _size(s), _collider_size(cs), _collider{p, cs}, _player_sprite_texture(std::move(pst))
     {
     }
     
@@ -118,46 +118,47 @@ namespace playground
     void player::move_player()
     {
         glm::vec2 old_postion = _position;
+        _collider.position = _position;
 
         // W
         if (core::input_manager::is_key_down(87))
         {
             // std::cout << "W" << std::endl;
             _position.y += _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
-            {
-                _position = old_postion;
-            }
+            // if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
+            // {
+            //     _position = old_postion;
+            // }
         }
         // A
         if (core::input_manager::is_key_down(65))
         {
             // std::cout << "A" << std::endl;
             _position.x -= _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
-            {
-                _position = old_postion;
-            }
+            // if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
+            // {
+            //     _position = old_postion;
+            // }
         }
         // S
         if (core::input_manager::is_key_down(83))
         {
             // std::cout << "S" << std::endl;
             _position.y -= _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
-            {
-                _position = old_postion;
-            }
+            // if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
+            // {
+            //     _position = old_postion;
+            // }
         }
         // D
         if (core::input_manager::is_key_down(68))
         {
             // std::cout << "D" << std::endl;
             _position.x += _movement_speed * _movement_speed_multiplier;
-            if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
-            {
-                _position = old_postion;
-            }
+            // if (collision::AABB(get_aabb(), temp_wall.get_aabb()))
+            // {
+            //     _position = old_postion;
+            // }
         }
     }
     
@@ -167,9 +168,9 @@ namespace playground
         std::cout << "Dead" << std::endl;
     }
 
-    aabb_collider player::get_aabb() const
+    const aabb_collider* player::get_aabb() const
     {
         // std::cout << "works" << std::endl;
-        return aabb_collider { _position, _collider_size };
+        return &_collider;
     }
 }

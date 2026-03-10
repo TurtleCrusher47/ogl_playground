@@ -1,5 +1,6 @@
 #include "core/app.hpp"
 #include "core/time.hpp"
+#include "core/collision_manager.hpp"
 
 #include "gfx/render2d.hpp"
 #include "gfx/command.hpp"
@@ -10,6 +11,7 @@
 #include "glm/ext/matrix_clip_space.hpp"
 
 #include "game/player.hpp"
+#include "game/wall.hpp"
 #include <iostream>
 
 namespace playground::core
@@ -56,6 +58,12 @@ namespace playground::core
         static float rotation;
         vex_sprite_tex = std::make_unique<gfx::tex2d>("img/vex.png");
         player player_character;
+        collision_manager collision_mgr;
+        wall temp_wall {glm::vec2(100), glm::vec2(500, 0), glm::vec2(100.0f)};
+
+        // Add colliders to collision manager
+        collision_mgr.add_aabb(&player_character);
+        collision_mgr.add_aabb(&temp_wall);
 
         while (is_running)
         {
@@ -84,6 +92,11 @@ namespace playground::core
                 player_character.get_rotation(),
                 player_character.get_size(),
                 player_character.get_spriteptr());
+
+
+            // std::cout << player_character.get_position().x << ", " << player_character.get_position().y << std::endl;
+            // std::cout << temp_wall.get_position().x << ", " << temp_wall.get_position().y << std::endl;
+            collision_mgr.check_collisions();
 
             // constexpr float rotation_speed = 30.0f;
             // rotation += time::get_delta_time() * rotation_speed;

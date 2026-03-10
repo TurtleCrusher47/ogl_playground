@@ -1,14 +1,16 @@
 #pragma once
 
 #include "game/aabb_collider.hpp"
+#include <iostream>
 
 namespace playground::interfaces
 {
     class i_aabb
     {
-        protected:
-            virtual aabb_collider get_aabb() const = 0;
+        public:
+            virtual const aabb_collider* get_aabb() const = 0;
 
+        protected:
             virtual ~i_aabb() = default;
     };
 }

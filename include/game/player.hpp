@@ -34,7 +34,7 @@ namespace playground
         void move_player();
         void die();
 
-        aabb_collider get_aabb() const override;
+        const aabb_collider* get_aabb() const override;
     
     
     private:
@@ -45,10 +45,10 @@ namespace playground
         float _rotation {0.f};
         glm::vec2 _size {240.0f};
         glm::vec2 _collider_size {225.f, 210.f};
+        aabb_collider _collider { _position, _collider_size };
         std::unique_ptr<gfx::tex2d> _player_sprite_texture =  std::make_unique<gfx::tex2d>("img/vex.png");
 
         // aabb_collider invisible_wall {glm::vec2(500, 0), glm::vec2(240.0f)};
-        wall temp_wall {glm::vec2(100), glm::vec2(500, 0), glm::vec2(100.0f)};
         
     };
 }

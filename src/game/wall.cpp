@@ -15,8 +15,13 @@ namespace playground
     {
     }
     
-    aabb_collider wall::get_aabb() const
+    const aabb_collider* wall::get_aabb() const
     {
-        return aabb_collider {wall_collider};
+        return &wall_collider;
+    }
+    
+    glm::vec2 playground::wall::get_position()
+    {
+        return wall_collider.position;
     }
 }
